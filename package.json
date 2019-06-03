@@ -1,0 +1,10 @@
+{
+  "name": "bootcamp-example",
+  "version": "0.0.1",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "cors": "^2.8.4",
+    "express": "^4.15.3",
+    "mongodb": "^2.2.33"
+  }
+}
