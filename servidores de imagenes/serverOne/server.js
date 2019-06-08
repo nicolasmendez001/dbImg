@@ -14,9 +14,17 @@ app.post('/sendImg', function (req, res) {
     res.send("ok");
 });
 
-app.get('/getImg', function (req, res) {
-    console.log("Nueva peticion de imagen");
-    res.send("server1");
+app.post('/getImg', function (req, res) {
+    var path = req.body.nameImg;
+    fs.readFile('img/' + path, function (err, content) {
+        if (err) {
+            console.log("No existe");
+            res.end("No existe");
+        } else {
+            console.log("existe");
+            res.end(content);
+        }
+    });
 });
 
 app.listen(port, function () {

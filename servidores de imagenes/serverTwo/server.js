@@ -7,15 +7,24 @@ const port = 3001;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(formidable.parse({ keepExtensions: true}));
+app.use(formidable.parse({ keepExtensions: true }));
 
 app.post('/sendImg', function (req, res) {
     fs.rename(req.files.img.path, "img/" + req.files.img.originalFilename);
     res.send("ok");
 });
 
-app.get('/getImg', function (req, res) {
-    res.send("server2");
+app.post('/getImg', function (req, res) {
+    var path = req.body.nameImg;
+    fs.readFile('img/' + path, function (err, content) {
+        if (err) {
+            console.log("No existe");
+            res.end("No existe");
+        } else {
+            console.log("existe");
+            res.end(content);
+        }
+    });
 });
 
 app.listen(port, function () {
