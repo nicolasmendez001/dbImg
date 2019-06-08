@@ -1,7 +1,3 @@
-/**
- * Created by siro on 18/07/17.
- */
-
 var usersDB = require('../db/users');
 
 exports.getProblems = function(req, res) {
@@ -35,7 +31,6 @@ exports.updateProblem = function(req, res) {
 
 exports.deleteProblem = function(req, res) {
     var userId = req.params.userId;
-
     usersDB.deleteProblem(userId, function(err, result) {
         res.status(204).send();
     });
