@@ -8,6 +8,8 @@ exports.getProblems = function (req, res) {
 
 exports.addProblem = function (req, res) {
     console.log("Nuevo problema");
+    console.log("añadir nuevo problema de la ip: ", req.headers.host);
+    console.log("Tipo: ", req.method);
     var titulo = req.body.titulo;
     var fecha = req.body.fecha;
     var url_img = req.body.url_img;
@@ -34,7 +36,9 @@ exports.addUser = function (req, res) {
     var nombre = req.body.nombre;
     var correo = req.body.correo;
     var contraseña = req.body.contraseña;
-    console.log(req.body);
+    console.log("Añadir el usuario: ", nombre);
+    console.log("añadir nuevo usuario de la ip: ", req.headers.host);
+    console.log("Tipo: ", req.method);
     usersDB.createUser(nombre, correo, contraseña, function (err, result) {
         res.status(201).send(result);
     });
@@ -42,10 +46,10 @@ exports.addUser = function (req, res) {
 
 exports.verificarUser = async function (req, res) {
     console.log("Entra a verificar");
+    console.log("Verificar el usuario de la ip: ", req.headers.host);
+    console.log("Tipo: ", req.method);
     var correo = req.body.email;
     var contraseña = req.body.password;
     var aux = await usersDB.validateUser(correo, contraseña);
-    console.log("es: ",aux);
-    
     res.send(aux);
 }
